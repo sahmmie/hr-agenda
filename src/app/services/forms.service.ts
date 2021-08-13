@@ -50,7 +50,7 @@ export class FormsService {
           val.forEach(v => {
             if (v.id === data.id) {
 
-              v.pirority = data.pirority;
+              v.priority = data.priority;
               v.tags = data.tags;
               v.status = data.status;
               v.title = data.title;

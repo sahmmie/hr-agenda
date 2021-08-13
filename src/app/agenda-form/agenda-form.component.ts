@@ -41,7 +41,7 @@ export class AgendaFormComponent implements OnInit {
         Validators.required,
       ],
     ],
-    pirority: [
+    priority: [
       '',
       [
         Validators.required,

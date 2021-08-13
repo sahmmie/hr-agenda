@@ -18,13 +18,16 @@
   <div class="mt-4">
     <mat-expansion-panel
       *ngFor="let agenda of formsService.agenda$.asObservable() | async"
-      class="mb-2 p-2 text-white"
+      class="mb-2 pt-3 text-white"
       hideToggle
       [ngClass]="{ grey: agenda.status }"
     >
       <mat-expansion-panel-header class="align-items-center d-flex pt-2">
         <mat-panel-title class="w-100">
-          <h4>{{ agenda.title | titlecase }}</h4>
+          <mat-icon *ngIf="agenda.priority == 'high'" class="pl-10 text-danger">priority_high</mat-icon>
+          <mat-icon *ngIf="agenda.priority == 'medium'" class="pl-10 text-warning">maximize</mat-icon>
+          <mat-icon *ngIf="agenda.priority == 'low'" class="pl-10 text-success">low_priority</mat-icon>
+          <h4 class="pl-22">{{ agenda.title | titlecase }}</h4>
         </mat-panel-title>
         <mat-panel-description
           class="float-right w-100 d-flex justify-content-between text-white"

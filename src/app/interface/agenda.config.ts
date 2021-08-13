@@ -4,7 +4,7 @@ export interface agenda {
   description: string;
   startDate: Date;
   endDate: Date;
-  pirority?: string;
+  priority?: string;
   location?: {
     name: string;
     address: string;
