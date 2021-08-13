@@ -16,9 +16,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formsService.agenda$.subscribe((data) => {
-      console.log(data);
-    });
   }
 
   openForm(): void {
@@ -35,6 +32,11 @@ export class AppComponent implements OnInit {
         ...data,
       }
     });
+  }
+
+  editStatus(data: agenda): void {
+    this.formsService.postAgenda(data)
+      .subscribe();
   }
 
   delete(data: agenda): void {

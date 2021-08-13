@@ -29,8 +29,6 @@ export class FormsService {
     return this.getDataFromStore().pipe(
       take(1),
       map(data => {
-        data = data.filter((v, i, a) => a.findIndex(x => x.id === v.id) === i);
-        console.log(data);
         this.agenda$.next(data);
         return data;
       })
@@ -45,11 +43,13 @@ export class FormsService {
 
   private saveDataToStore(data: agenda): Observable<agenda[]> {
 
-    return this.agenda$.pipe(
+    return this.getDataFromStore().pipe(
       switchMap(val => {
         if (val?.length) {
+          // find if already exists and update it
           val.forEach(v => {
             if (v.id === data.id) {
+
               v.pirority = data.pirority;
               v.tags = data.tags;
               v.status = data.status;
@@ -71,7 +71,11 @@ export class FormsService {
       map(val => {
         // remove dups
         val = val.filter((v, i, a) => a.findIndex(x => x.id === v.id) === i);
+        localStorage.removeItem('agendas');
         localStorage.setItem('agendas', JSON.stringify(val));
+        console.log('====================================');
+        console.log(val);
+        console.log('====================================');
         return (val);
       })
     );
@@ -79,7 +83,7 @@ export class FormsService {
 
   private deleteDataFromStore(data: agenda): Observable<agenda[]> {
 
-    return this.agenda$.pipe(
+    return this.getDataFromStore().pipe(
       switchMap(val => {
         if (val?.length) {
           val.forEach(v => {

@@ -46,7 +46,7 @@
             <a class="ml-5" (click)="$event.stopPropagation(); delete(agenda)">
               <mat-icon class="text-white">delete</mat-icon>
             </a>
-            <a (click)="$event.stopPropagation(); edit(agenda)" class="ml-5">
+            <a (click)="$event.stopPropagation(); editStatus(agenda)" class="ml-5">
               <mat-checkbox class="" [(ngModel)]="agenda.status"></mat-checkbox>
             </a>
           </div>
