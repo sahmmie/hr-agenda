@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
 
   delete(data: agenda): void {
     this.formsService.deleteAgenda(data).subscribe(
-      (val) => console.log(val),
+      (val) => this.formsService.getAgendas(),
       err => console.log(err)
     );
   }

@@ -71,7 +71,6 @@ export class FormsService {
       map(val => {
         // remove dups
         val = val.filter((v, i, a) => a.findIndex(x => x.id === v.id) === i);
-        localStorage.removeItem('agendas');
         localStorage.setItem('agendas', JSON.stringify(val));
         console.log('====================================');
         console.log(val);
