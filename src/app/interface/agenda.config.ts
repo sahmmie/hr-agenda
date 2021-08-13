@@ -1,9 +1,9 @@
-export interface agenda {
+export interface Agenda {
   title: string;
   id: any;
   description: string;
-  startDate: Date;
-  endDate: Date;
+  starts: Date;
+  ends: Date;
   priority?: string;
   location?: {
     name: string;

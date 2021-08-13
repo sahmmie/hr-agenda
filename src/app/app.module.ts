@@ -20,7 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
-
+import { NgxCsvParserModule } from 'ngx-csv-parser';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +44,7 @@ import { MatCardModule } from '@angular/material/card';
     MatDatepickerModule,
     ReactiveFormsModule,
     MatCardModule,
+    NgxCsvParserModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

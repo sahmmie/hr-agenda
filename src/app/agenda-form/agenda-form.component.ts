@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import { FormsService } from '../services/forms.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { agenda } from '../interface/agenda.config';
+import { Agenda } from '../interface/agenda.config';
 
 @Component({
   templateUrl: './agenda-form.component.html',
@@ -29,13 +29,13 @@ export class AgendaFormComponent implements OnInit {
         Validators.required,
       ],
     ],
-    startDate: [
+    starts: [
       '',
       [
         Validators.required,
       ],
     ],
-    endDate: [
+    ends: [
       '',
       [
         Validators.required,
@@ -58,7 +58,7 @@ export class AgendaFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private formsService: FormsService,
     public dialogRef: MatDialogRef<AgendaFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: agenda) {
+    @Inject(MAT_DIALOG_DATA) public data: Agenda) {
   }
 
   ngOnInit(): void {

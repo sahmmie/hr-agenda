@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap, tap, take } from 'rxjs/operators';
-import { agenda } from '../interface/agenda.config';
+import { Agenda } from '../interface/agenda.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormsService {
-  agenda$: BehaviorSubject<agenda[] | null>;
+  agenda$: BehaviorSubject<Agenda[] | null>;
   constructor() {
-    this.agenda$ = new BehaviorSubject<agenda[] | null>(null);
+    this.agenda$ = new BehaviorSubject<Agenda[] | null>(null);
     this.getAgendas();
   }
 
-  postAgenda(agendaData: agenda): Observable<agenda[]> {
+  postAgenda(agendaData: Agenda): Observable<Agenda[]> {
     return this.saveDataToStore(agendaData);
   }
 
-  patchAgenda(agendaData: agenda): Observable<agenda[]> {
+  patchAgenda(agendaData: Agenda): Observable<Agenda[]> {
     return this.saveDataToStore(agendaData);
   }
 
-  deleteAgenda(agendaData: agenda): Observable<agenda[]> {
+  deleteAgenda(agendaData: Agenda): Observable<Agenda[]> {
     return this.deleteDataFromStore(agendaData);
   }
 
@@ -37,11 +37,11 @@ export class FormsService {
 
 
   // fake db
-  private getDataFromStore(): Observable<agenda[]> {
+  private getDataFromStore(): Observable<Agenda[]> {
     return of(JSON.parse((localStorage.getItem('agendas') || `[]`)));
   }
 
-  private saveDataToStore(data: agenda): Observable<agenda[]> {
+  private saveDataToStore(data: Agenda): Observable<Agenda[]> {
 
     return this.getDataFromStore().pipe(
       switchMap(val => {
@@ -55,8 +55,8 @@ export class FormsService {
               v.status = data.status;
               v.title = data.title;
               v.description = data.description;
-              v.startDate = data.startDate;
-              v.endDate = data.endDate;
+              v.starts = new Date(data.starts);
+              v.ends = new Date(data.ends);
               v.location = data.location;
             } else {
               val.push(data);
@@ -80,7 +80,7 @@ export class FormsService {
     );
   }
 
-  private deleteDataFromStore(data: agenda): Observable<agenda[]> {
+  private deleteDataFromStore(data: Agenda): Observable<Agenda[]> {
 
     return this.getDataFromStore().pipe(
       switchMap(val => {

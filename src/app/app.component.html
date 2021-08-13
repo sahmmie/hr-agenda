@@ -5,6 +5,25 @@
 </mat-toolbar>
 <div class="container">
   <div class="w-100 text-right float-left d-flex justify-content-end sha pt-4">
+    <input (change)="fileChangeListener($event)" hidden #inputUpload type="file">
+    <a (click)="inputUpload.click()" class="bg-dark p-2 shadow radius-8 mr-10 d-flex align-items-center no-decoration text-white px-2">
+      <span class="mr-6"> Upload Agenda</span>
+          <mat-icon
+       class="text-white mt-auto mb-auto"
+       aria-hidden="false"
+       aria-label="Create agenda"
+       >file_upload</mat-icon
+     >
+       </a>
+    <a (click)="exportData()" class="bg-dark p-2 shadow radius-8 mr-10 d-flex align-items-center no-decoration text-white px-2">
+   <span class="mr-6"> Export</span>
+       <mat-icon
+    class="text-white mt-auto mb-auto"
+    aria-hidden="false"
+    aria-label="Create agenda"
+    >file_download</mat-icon
+  >
+    </a>
     <a (click)="openForm()" class="bg-dark p-2 shadow radius-8">
       <mat-icon
         class="text-white"
@@ -35,11 +54,11 @@
           <div class="ml-4">
             <h4>
               <span class="font-bold">
-                {{ agenda.startDate | date: "medium" }}
+                {{ agenda.starts | date: "medium" }}
               </span>
               -
               <span class="">
-                {{ agenda.endDate | date: "medium" }}
+                {{ agenda.ends | date: "medium" }}
               </span>
             </h4>
           </div>

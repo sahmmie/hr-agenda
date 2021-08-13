@@ -25,6 +25,8 @@
     "bootstrap": "^5.1.0",
     "date-fns": "^2.23.0",
     "jquery": "^3.6.0",
+    "ngx-csv": "^0.3.2",
+    "ngx-csv-parser": "^0.0.7",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
