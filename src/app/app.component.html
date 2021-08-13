@@ -1,0 +1,58 @@
+<mat-toolbar>
+  <div class="mr-2">
+    <span class="">AGENDA</span>
+  </div>
+</mat-toolbar>
+<div class="container">
+  <div class="w-100 text-right float-left d-flex justify-content-end sha pt-4">
+    <a (click)="openForm()" class="bg-dark p-2 shadow radius-8">
+      <mat-icon
+        class="text-white"
+        aria-hidden="false"
+        aria-label="Create agenda"
+        >edit</mat-icon
+      >
+    </a>
+  </div>
+  <div class="mt-4">
+    <mat-expansion-panel
+      *ngFor="let agenda of formsService.agenda$.asObservable() | async"
+      class="mb-2 p-2 text-white"
+      hideToggle
+      [ngClass]="{ grey: agenda.status }"
+    >
+      <mat-expansion-panel-header class="align-items-center d-flex pt-2">
+        <mat-panel-title class="w-100">
+          <h4>{{ agenda.title | titlecase }}</h4>
+        </mat-panel-title>
+        <mat-panel-description
+          class="float-right w-100 d-flex justify-content-between text-white"
+        >
+          <div class="ml-4">
+            <h4>
+              <span class="font-bold">
+                {{ agenda.startDate | date: "medium" }}
+              </span>
+              -
+              <span class="">
+                {{ agenda.endDate | date: "medium" }}
+              </span>
+            </h4>
+          </div>
+          <div class="d-flex ml-5">
+            <a (click)="$event.stopPropagation(); edit(agenda)">
+              <mat-icon class="pr-2">edit</mat-icon></a
+            >
+            <a class="ml-5" (click)="$event.stopPropagation(); delete(agenda)">
+              <mat-icon class="text-white">delete</mat-icon>
+            </a>
+            <a (click)="$event.stopPropagation(); edit(agenda)" class="ml-5">
+              <mat-checkbox class="" [(ngModel)]="agenda.status"></mat-checkbox>
+            </a>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{ agenda.description }}</p>
+    </mat-expansion-panel>
+  </div>
+</div>
