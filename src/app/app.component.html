@@ -14,6 +14,7 @@
       >
     </a>
   </div>
+ <ng-container *ngIf="(formsService.agenda$.asObservable() | async)?.length; else elseTemplate">
   <div class="mt-4">
     <mat-expansion-panel
       *ngFor="let agenda of formsService.agenda$.asObservable() | async"
@@ -55,4 +56,16 @@
       <p>{{ agenda.description }}</p>
     </mat-expansion-panel>
   </div>
+ </ng-container>
+ <ng-template #elseTemplate>
+ <div class="mt-4 text-center p-4">
+  <mat-card class="text-center p-5">
+    <img src="../assets/undraw_To_do_re_jaef.svg" alt="" class="img-fluid">
+<div class="text-center mt-5">
+  <h2 class="text-weight-bold">You are all caught up!</h2>
+</div>
+  </mat-card>
+ </div>
+ </ng-template>
+
 </div>
